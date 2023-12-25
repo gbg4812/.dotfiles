@@ -111,6 +111,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Functions definitions, scripts to source
+if [ -d ~/bin/src ]; then
+    for script in ~/bin/src/* 
+    do
+        source $script
+    done
+fi
+
 # Set env variables
 EDITOR=nvim
 

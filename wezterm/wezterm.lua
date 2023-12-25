@@ -30,16 +30,6 @@ config.keys = {
         mods = 'CTRL',
         action = wezterm.action.PasteFrom('Clipboard')
     },
-    {
-        key = 'F',
-        mods = 'CTRL',
-        action = wezterm.action.SendString('cdf\n')
-    },
-    {
-        key = 'A',
-        mods = 'CTRL',
-        action = wezterm.action.SendString('tmux attach\n')
-    },
 }
 
 return config
