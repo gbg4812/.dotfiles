@@ -1,7 +1,13 @@
 local wezterm = require('wezterm')
 local colors = require('lua/rose-pine').colors()
 local window_frame = require('lua/rose-pine').window_frame()
+local mux = wezterm.mux
 local config = {}
+
+-- wezterm.on('gui-startup', function(cmd)
+--     local tab, pane, window = mux.spawn_window(cmd or {})
+--     window:gui_window():toggle_fullscreen()
+-- end)
 
 config.colors = colors
 config.window_frame = window_frame
@@ -11,6 +17,9 @@ config.harfbuzz_features =
 { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
 
 config.enable_tab_bar = false
+config.window_decorations = "RESIZE"
+config.initial_rows = 200
+config.initial_cols = 200
 
 -- Key bindings
 config.disable_default_key_bindings = true;
@@ -29,6 +38,10 @@ config.keys = {
         key = 'V',
         mods = 'CTRL',
         action = wezterm.action.PasteFrom('Clipboard')
+    },
+    {
+        key = 'F11',
+        action = wezterm.action.ToggleFullScreen,
     },
 }
 
