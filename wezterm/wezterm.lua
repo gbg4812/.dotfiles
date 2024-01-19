@@ -23,6 +23,7 @@ config.initial_cols = 200
 
 -- Key bindings
 config.disable_default_key_bindings = true;
+
 config.keys = {
     {
         key = 'L',
@@ -43,6 +44,16 @@ config.keys = {
         key = 'F11',
         action = wezterm.action.ToggleFullScreen,
     },
+    {
+        key = 't',
+        mods = 'CTRL',
+        action = wezterm.action_callback(function()
+
+        end)
+        -- i want to have functionality for searching paths with fzf and 
+        -- pasting them to the string
+    },
+
 }
 
 return config
