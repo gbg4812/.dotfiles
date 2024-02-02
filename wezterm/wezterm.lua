@@ -2,7 +2,7 @@ local wezterm = require('wezterm')
 local colors = require('lua/rose-pine').colors()
 local window_frame = require('lua/rose-pine').window_frame()
 local mux = wezterm.mux
-local config = {}
+local config = wezterm.config_builder()
 
 -- wezterm.on('gui-startup', function(cmd)
 --     local tab, pane, window = mux.spawn_window(cmd or {})
@@ -12,9 +12,9 @@ local config = {}
 config.colors = colors
 config.window_frame = window_frame
 
-config.font = wezterm.font('Monaspace Neon')
+config.font = wezterm.font ('Monaspace Neon', { weight = 400 } )
 config.harfbuzz_features =
-{ 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
+{ 'ss02', 'ss03', 'calt', 'dlig' }
 
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
@@ -50,7 +50,7 @@ config.keys = {
         action = wezterm.action_callback(function()
 
         end)
-        -- i want to have functionality for searching paths with fzf and 
+        -- i want to have functionality for searching paths with fzf and
         -- pasting them to the string
     },
 
