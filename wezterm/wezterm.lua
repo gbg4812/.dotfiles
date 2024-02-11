@@ -17,9 +17,6 @@ config.harfbuzz_features =
 { 'ss02', 'ss03', 'calt', 'dlig' }
 
 config.enable_tab_bar = false
-config.window_decorations = "RESIZE"
-config.initial_rows = 400
-config.initial_cols = 400
 
 -- Key bindings
 config.disable_default_key_bindings = true;
