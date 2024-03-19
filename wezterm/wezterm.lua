@@ -11,9 +11,9 @@ local config = wezterm.config_builder()
 config.colors = colors
 config.window_frame = window_frame
 
-config.font = wezterm.font('Monaspace Neon', { weight = 400 })
-config.harfbuzz_features =
-{ 'ss02', 'ss03', 'calt', 'dlig' }
+config.font = wezterm.font('Fira Code', { weight = 400 })
+config.harfbuzz_features = { 'ss08', 'ss04', 'ss03', 'cv29' }
+-- === :: => $ & () {}
 
 config.enable_tab_bar = false
 

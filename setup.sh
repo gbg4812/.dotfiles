@@ -54,8 +54,14 @@ if [[ $ans == "Y" ]]; then
     sudo apt install cmake
     sudo apt install make
     sudo apt install curl
+fi
 
-    sudo snap install neovim
+read -p "do you want to install lazygit? (Y/n) " ans
+if [[ $ans == "Y" ]]; then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
 fi
 
 read -p "do you want to install flatpak and wezterm with it? (Y/n) " ans
@@ -68,6 +74,11 @@ read -p "do you want to install nvim config dependencys: npm node" ans
 if [[ $ans == "Y" ]]; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     bash -c "nvm install node"
+fi
+
+read -p "do you want to install wezterm config dependencys: Fira Code" ans
+if [[ $ans == "Y" ]]; then
+    sudo apt install fonts-firacode
 fi
 
 read -p "were would you like to keep your projects? (default ~/Projects) " prj
