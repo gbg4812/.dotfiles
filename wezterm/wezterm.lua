@@ -1,7 +1,6 @@
 local wezterm = require('wezterm')
 local colors = require('lua/rose-pine').colors()
 local window_frame = require('lua/rose-pine').window_frame()
-local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 -- wezterm.on('gui-startup', function(cmd)
@@ -12,7 +11,7 @@ local config = wezterm.config_builder()
 config.colors = colors
 config.window_frame = window_frame
 
-config.font = wezterm.font ('Monaspace Neon', { weight = 400 } )
+config.font = wezterm.font('Monaspace Neon', { weight = 400 })
 config.harfbuzz_features =
 { 'ss02', 'ss03', 'calt', 'dlig' }
 
@@ -41,16 +40,6 @@ config.keys = {
         key = 'F11',
         action = wezterm.action.ToggleFullScreen,
     },
-    {
-        key = 't',
-        mods = 'CTRL',
-        action = wezterm.action_callback(function()
-
-        end)
-        -- i want to have functionality for searching paths with fzf and
-        -- pasting them to the string
-    },
-
 }
 
 return config
