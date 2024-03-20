@@ -81,6 +81,11 @@ if [[ $ans == "Y" ]]; then
     sudo apt install fonts-firacode
 fi
 
+read -p "do you want to install tmux config dependencys: tpm" ans
+if [[ $ans == "Y" ]]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm/tpm
+fi
+
 read -p "were would you like to keep your projects? (default ~/Projects) " prj
 if [[ -z $prj ]]; then 
 	prj=$(echo ~/Projects)
