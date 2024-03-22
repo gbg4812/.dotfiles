@@ -9,7 +9,7 @@ link() {
     fpath=$(realpath $1)
     fname=$(basename $fpath)
     tpath=$(realpath $2)
-    if [[ -e $fpath ]]; then
+    if [[ -e $fpath ]] && [[ ! -h $fpath ]]; then
         read -p "You want to replace $tpath/$fname? (Y/n) " ans
 
         if [[ $ans == "Y" ]]; then
@@ -31,22 +31,21 @@ link "$wdir/.tmux-cht-command" "$HOME"
 
 read -p "do you want to install nvim config in ~/.config? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
-	curr=$PWD
-	cd ~/.config
+	pushd ~/.config
 	git clone https://github.com/gbg4812/nvim.git
-	cd $curr
+    popd
 fi
 
 
 read -p "do you want to install the bin repository to ~/bin? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
 	curr=$PWD
-	cd ~
+	pushd ~
 	git clone https://github.com/gbg4812/bin.git
-	cd $curr
+	popd
 fi
 
-read -p "do you want to install liked packages: fzf ripgrep cmake make curl tmux neovim? (Y/n) " ans
+read -p "do you want to install liked packages: fzf ripgrep cmake make curl tmux? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
 	sudo apt install fzf
 	sudo apt install ripgrep
@@ -62,36 +61,28 @@ if [[ $ans == "Y" ]]; then
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit /usr/local/bin
+    echo "cleaning..."
+    rm lazygit lazygit.tar.gz
 fi
 
-read -p "do you want to install flatpak and wezterm with it? (Y/n) " ans
+read -p "do you want to install flatpak? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
     sudo apt install flatpak
-    flatpak install flathub org.wezfurlong.wezterm
+    echo "if you want to install wezterm run: flatpak install flathub org.wezfurlong.wezterm"
 fi
 
-read -p "do you want to install nvim config dependencys: npm node" ans
+read -p "do you want to install nvim config dependencys: npm node (Y/n) " ans
 if [[ $ans == "Y" ]]; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     bash -c "nvm install node"
 fi
 
-read -p "do you want to install wezterm config dependencys: Fira Code" ans
+read -p "do you want to install wezterm config dependencys: Fira Code (Y/n) " ans
 if [[ $ans == "Y" ]]; then
     sudo apt install fonts-firacode
 fi
 
-read -p "do you want to install tmux config dependencys: tpm" ans
+read -p "do you want to install tmux config dependencys: tpm (Y/n) " ans
 if [[ $ans == "Y" ]]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm/tpm
-fi
-
-read -p "were would you like to keep your projects? (default ~/Projects) " prj
-if [[ -z $prj ]]; then 
-	prj=$(echo ~/Projects)
-fi
-
-if ! [[ -d $prj ]]; then 
-	echo "creating $prj folder..."
-	mkdir $prj
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm/
 fi
