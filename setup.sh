@@ -73,14 +73,14 @@ fi
 
 read -p "do you want to install liked packages: fzf ripgrep cmake make curl tmux git gh? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
-	sudo $install_cmd install fzf
-	sudo $install_cmd install ripgrep
-	sudo $install_cmd install tmux
-	sudo $install_cmd install cmake
-	sudo $install_cmd install make
-	sudo $install_cmd install curl
-	sudo $install_cmd install git
-	sudo $install_cmd install gh
+	sudo $install_cmd fzf
+	sudo $install_cmd ripgrep
+	sudo $install_cmd tmux
+	sudo $install_cmd cmake
+	sudo $install_cmd make
+	sudo $install_cmd curl
+	sudo $install_cmd git
+	sudo $install_cmd gh
 
 fi
 
@@ -96,8 +96,10 @@ fi
 
 read -p "do you want to install flatpak? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
-	sudo apt install flatpak
-	echo "if you want to install wezterm run: flatpak install flathub org.wezfurlong.wezterm"
+	sudo $install_cmd flatpak
+	if [[ $term == "wezterm" ]]; then
+		echo "if you want to install wezterm run: flatpak install flathub org.wezfurlong.wezterm"
+	fi
 fi
 
 read -p "do you want to install nvim config dependencys: npm node (Y/n) " ans
