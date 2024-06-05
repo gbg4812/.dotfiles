@@ -13,10 +13,11 @@ if apt-get >/dev/null 2>/dev/null; then
 	install_cmd="apt-get install"
 elif dnf >/dev/null; then
 	install_cmd="dnf install"
-elif pacman >/dev/null; then
+elif pacman -h >/dev/null; then
 	install_cmd="pacman -S"
 else
 	echo "install_cmd not compatible!"
+	exit 1
 fi
 
 echo "Detected package manager: "$install_cmd
@@ -71,7 +72,7 @@ if [[ $ans == "Y" ]]; then
 	popd
 fi
 
-read -p "do you want to install liked packages: fzf ripgrep cmake make curl tmux git gh? (Y/n) " ans
+read -p "do you want to install liked packages: fzf ripgrep cmake make curl tmux git gh tree-sitter? (Y/n) " ans
 if [[ $ans == "Y" ]]; then
 	sudo $install_cmd fzf
 	sudo $install_cmd ripgrep
@@ -80,7 +81,8 @@ if [[ $ans == "Y" ]]; then
 	sudo $install_cmd make
 	sudo $install_cmd curl
 	sudo $install_cmd git
-	sudo $install_cmd gh
+	sudo $install_cmd github-cli
+	sudo $install_cmd tree-sitter
 
 fi
 
@@ -105,7 +107,7 @@ fi
 read -p "do you want to install nvim config dependencys: npm node (Y/n) " ans
 if [[ $ans == "Y" ]]; then
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-	bash -c "nvm install node"
+	nvm install node
 fi
 
 read -p "do you want to install tmux config dependencys: tpm (Y/n) " ans
