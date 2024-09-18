@@ -83,7 +83,11 @@ if [[ $ans == "Y" ]]; then
 	sudo $install_cmd git
 	sudo $install_cmd github-cli
 	sudo $install_cmd tree-sitter
-
+	if [[ -z "${DISPLAY+x}" ]]; then
+		sudo $install_cmd xclip
+	elif [[ -z "$((WAYLAND_DISPLAY + x))" ]]; then
+		sudo $install_cmd wl-clipboard
+	fi
 fi
 
 read -p "do you want to install lazygit? (Y/n) " ans
@@ -113,4 +117,12 @@ fi
 read -p "do you want to install tmux config dependencys: tpm (Y/n) " ans
 if [[ $ans == "Y" ]]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm/
+fi
+
+read -p "do you want to use zsh? (Y/n) " ans
+if [[ $ans == "Y" ]]; then
+	sudo $install_cmd zsh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	rm -rf ~/.oh-my-zsh/custom/
+	gh repo clone gbg4812/zsh_custom ~/.oh-my-zsh/custom/
 fi
