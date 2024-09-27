@@ -9,3 +9,7 @@ alias sht="shutdown now"
 # git
 alias gts="git status"
 alias gtb="git branch"
+
+# python3
+
+alias pyenv="source .venv/bin/activate"
