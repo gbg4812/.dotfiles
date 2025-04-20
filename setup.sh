@@ -103,6 +103,8 @@ if [[ $ans == "Y" ]]; then
     sudo $install_cmd git
     sudo $install_cmd github-cli
     sudo $install_cmd tree-sitter
+    sudo $install_cmd fd-find
+    sudo $install_cmd luarocks
     if [[ -z "${DISPLAY+x}" ]]; then
         sudo $install_cmd xclip
     elif [[ -z "$((WAYLAND_DISPLAY + x))" ]]; then
