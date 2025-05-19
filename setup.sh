@@ -21,7 +21,7 @@ else
     exit 1
 fi
 
-echo "Detected package manager: "$install_cmd
+echo "Detected package manager: ""$install_cmd"
 
 read -p "witch terminal do you prefere? kitty(1) wezterm(2): " ans
 if [[ $ans -eq 2 ]]; then
@@ -57,7 +57,7 @@ if [[ $shell = "bash" ]]; then
     link "$wdir/.bash_aliases" "$HOME"
 fi
 
-if [[ $shell = "zsh" ]]; then
+if [[ $shell = "zsh" && $SHELL != "/usr/bin/zsh" ]]; then
     sudo $install_cmd zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     rm -rf ~/.oh-my-zsh/custom/
