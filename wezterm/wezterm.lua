@@ -4,12 +4,13 @@ local window_frame = require("lua/rose-pine").window_frame()
 local config = wezterm.config_builder()
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+local mux = wezterm.mux
 workspace_switcher.apply_to_config(config)
 
--- wezterm.on('gui-startup', function(cmd)
---     local tab, pane, window = mux.spawn_window(cmd or {})
---     window:gui_window():toggle_fullscreen()
--- end)
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
 
 config.color_scheme = "Catppuccin Mocha"
 config.window_frame = window_frame
