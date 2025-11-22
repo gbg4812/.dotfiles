@@ -1,0 +1,11 @@
+[font]
+normal={family="FiraCode Nerd Font", style="Regular"}
+size=12
+[window]
+startup_mode="Maximized"
+padding={x=10, y=10}
+dynamic_padding=true
+decorations="None"
+[terminal]
+shell="zellij"
+
