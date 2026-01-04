@@ -1,10 +1,125 @@
+# ================================================================
+#  LATEXINDENT CONFIGURATION — for theorems, definitions, proofs, etc.
+# ================================================================
+
+# ---------- Basic indentation ----------
+defaultIndent: "    " # 4 spaces
 indentPreamble: 1
-defaultIndent: "  "
-removeTrailingWhitespace: 1
-noAdditionalIndent:
-  abstract: 1
+noBackup: 0 # keep .bak files (safe)
+onlyOneBackUp: 1
+preserveBlankLines: 1
+trailingComments: 1
+
+removeTrailingWhitespace:
+  beforeProcessing: 1
+  afterProcessing: 1
+
+# ---------- Global line wrapping ----------
 modifyLineBreaks:
-  preserveBlankLines: 1
-  condenseMultipleBlankLinesInto: 1
   textWrapOptions:
-    columns: 80
+    columns: 80 # wrap lines after 80 characters
+    when: always
+    wrap: 1
+    removeParagraphLineBreaks: 1
+    multipleSpacesToSingle: 1
+
+# ---------- Prevent section commands from swallowing environments ----------
+verbatimEnvironments:
+  section: 0
+  subsection: 0
+  subsubsection: 0
+  paragraph: 0
+  subparagraph: 0
+
+# ---------- Ensure all environments are parsed correctly ----------
+environments:
+  default:
+    body: 1
+
+# ================================================================
+#  SPECIAL ENVIRONMENTS (double-escaped braces for safety)
+# ================================================================
+
+specialBeginEnd:
+  definition:
+    begin: '\\begin\{definition\}'
+    end: '\\end\{definition\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    bodyEnv: text
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  theorem:
+    begin: '\\begin\{theorem\}'
+    end: '\\end\{theorem\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  lemma:
+    begin: '\\begin\{lemma\}'
+    end: '\\end\{lemma\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  proposition:
+    begin: '\\begin\{proposition\}'
+    end: '\\end\{proposition\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  corollary:
+    begin: '\\begin\{corollary\}'
+    end: '\\end\{corollary\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  example:
+    begin: '\\begin\{example\}'
+    end: '\\end\{example\}'
+    lookForThis: 1
+    beginOptArgBraces: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+  proof:
+    begin: '\\begin\{proof\}'
+    end: '\\end\{proof\}'
+    lookForThis: 1
+    body: 1
+    modifyLineBreaks:
+      textWrapOptions:
+        columns: 80
+        when: always
+
+# ---------- Alignment in math environments ----------
+lookForAlignDelims:
+  align: 1
+  array: 1
+  tabbing: 0
